@@ -11,10 +11,10 @@ pipeline{
         stage("Display parent git url") {
             when {
                 
-                expression { GIT_URL == 'https://github.com/arvi3674/testing.git' }
+                expression { GIT_URL != 'https://github.com/arvi3674/testing' }
             }
             steps{
-                sh "echo WORKING FINE"
+                sh "curl -XPOST $BUILD_URL/stop"
             }
         }
         
