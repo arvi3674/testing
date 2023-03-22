@@ -8,30 +8,9 @@ pipeline{
 
     stages {
         
-        stage("Build Docker image") {
+        stage("Display parent git url") {
             steps{
-                script {
-                    dockerImage = docker.build (
-                                "us.gcr.io/trckx-dev-test/testing:${GIT_COMMIT}",
-                                "-f Dockerfile ."
-                    )
-                }
-            }
-        }
-        
-        stage("Uploading Image") {
-            steps{
-                script {
-                    docker.withRegistry('https://us.gcr.io', 'gcr:gcloud_api_key_test' ) {
-                       dockerImage.push()
-                    }
-                }
-            }
-        }
-
-        stage("Cleaning") {
-            steps {
-                sh "docker rmi us.gcr.io/trckx-dev-test/testing:${GIT_COMMIT}"
+                sh "echo ${GIT_URL}"
             }
         }
         
