@@ -9,8 +9,12 @@ pipeline{
     stages {
         
         stage("Display parent git url") {
+            when {
+                
+                expression { GIT_URL == 'https://github.com/arvi3674/testing.git' }
+            }
             steps{
-                sh "echo ${GIT_URL}"
+                sh "echo WORKING FINE"
             }
         }
         
